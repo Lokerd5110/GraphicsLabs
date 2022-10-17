@@ -1,0 +1,10 @@
+C:\Users\loker\source\repos\GraphicsLab2\GraphicsLab2\bin\Debug\GraphicsLab2.exe.config
+C:\Users\loker\source\repos\GraphicsLab2\GraphicsLab2\bin\Debug\GraphicsLab2.exe
+C:\Users\loker\source\repos\GraphicsLab2\GraphicsLab2\bin\Debug\GraphicsLab2.pdb
+C:\Users\loker\source\repos\GraphicsLab2\GraphicsLab2\obj\Debug\GraphicsLab2.csproj.AssemblyReference.cache
+C:\Users\loker\source\repos\GraphicsLab2\GraphicsLab2\obj\Debug\GraphicsLab2.Form1.resources
+C:\Users\loker\source\repos\GraphicsLab2\GraphicsLab2\obj\Debug\GraphicsLab2.Properties.Resources.resources
+C:\Users\loker\source\repos\GraphicsLab2\GraphicsLab2\obj\Debug\GraphicsLab2.csproj.GenerateResource.cache
+C:\Users\loker\source\repos\GraphicsLab2\GraphicsLab2\obj\Debug\GraphicsLab2.csproj.CoreCompileInputs.cache
+C:\Users\loker\source\repos\GraphicsLab2\GraphicsLab2\obj\Debug\GraphicsLab2.exe
+C:\Users\loker\source\repos\GraphicsLab2\GraphicsLab2\obj\Debug\GraphicsLab2.pdb
