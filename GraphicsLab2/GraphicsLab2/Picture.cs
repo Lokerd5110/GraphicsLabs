@@ -6,11 +6,13 @@ namespace GraphicsLab2
     {
         class Picture
         {
+
             private int width;
             private int height;
             private int[,] pixels;
             private SolidBrush[] pallete;
 
+            // конструктор класса
             public Picture(int picWidth, int picHeight, int[,] picPixels, SolidBrush[] picPallete)
             {
                 width = picWidth;
@@ -19,6 +21,7 @@ namespace GraphicsLab2
                 pallete = picPallete;
             }
 
+            // вывод данных
             public int getWidth()
             {
                 return width;

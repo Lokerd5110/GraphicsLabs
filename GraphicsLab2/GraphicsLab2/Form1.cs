@@ -32,7 +32,9 @@ namespace GraphicsLab2
 
         public byte[] readPicture (string path)
         {
+            // массив для хранения значений
             byte[] res = new byte[0];
+            // считывание значений из файла
             try
             {
                 using (FileStream fsSource = new FileStream(path,
@@ -50,6 +52,12 @@ namespace GraphicsLab2
                     }
 
                     res = img;
+
+                    // запись считанного в новый файл
+                    using (FileStream fsNew = new FileStream("C:\\Users\\loker\\source\\repos\\GraphicsLabs\\GraphicsLab2\\GraphicsLab2\\imgs\\new", FileMode.Create, FileAccess.Write))
+                    {
+                        fsNew.Write(res, 0, numBytesToRead);
+                    }
                 }
             }
             catch (FileNotFoundException ioEx)
@@ -60,17 +68,23 @@ namespace GraphicsLab2
             return res;
         }
 
+        // Отрисовка фигуры на объекте g
         private void DrawPicture(Picture pic)
         {
+            // получение кистей
             SolidBrush[] brushes = pic.getPallete();
 
+            // возвращение полотна в исхожое состояние
             g.ResetTransform();
 
+            // заполнение цветом фона
             SolidBrush back = new SolidBrush(Color.White);
             g.FillRectangle(back, 0, 0, 500, 500);
 
+            // масштабирование изображения под размеры картинки
             g.ScaleTransform(500 / pic.getWidth(), 500 / pic.getHeight());
 
+            // попиксельный вывод изображения
             for (int i = 0; i < pic.getHeight(); i++)
             {
                 for (int j = 0; j < pic.getWidth(); j++)
@@ -81,6 +95,7 @@ namespace GraphicsLab2
         }
 
 
+        // вывод n-го изображения
         private void firstBtn_Click(object sender, EventArgs e)
         {
             string path = @"C:\Users\loker\source\repos\GraphicsLabs\GraphicsLab2\GraphicsLab2\imgs\first";
@@ -94,6 +109,7 @@ namespace GraphicsLab2
             DrawPicture(pic);
         }
 
+        // вывод n-го изображения
         private void secondBtn_Click(object sender, EventArgs e)
         {
             string path = @"C:\Users\loker\source\repos\GraphicsLabs\GraphicsLab2\GraphicsLab2\imgs\second";
@@ -107,6 +123,7 @@ namespace GraphicsLab2
             DrawPicture(pic);
         }
 
+        // вывод n-го изображения
         private void thirdBtn_Click(object sender, EventArgs e)
         {
             string path = @"C:\Users\loker\source\repos\GraphicsLabs\GraphicsLab2\GraphicsLab2\imgs\third";
@@ -120,6 +137,7 @@ namespace GraphicsLab2
             DrawPicture(pic);
         }
 
+        // вывод n-го изображения
         private void fourthImg_Click(object sender, EventArgs e)
         {
             string path = @"C:\Users\loker\source\repos\GraphicsLabs\GraphicsLab2\GraphicsLab2\imgs\fourth";
