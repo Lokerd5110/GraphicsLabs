@@ -93,6 +93,7 @@ namespace GraphicsLab4
                 else
                 {
                     Bitmap second = figures[1].getBtm();
+
                     for (int i = figures[0].getX() > visX ? figures[0].getX() : visX; i < ((figures[0].getX() + figures[0].getR()) > (now.Height) ? now.Height : figures[0].getX() + figures[0].getR()) && i >= visX && i <= visX + visR; i++)
                     {
                         for (int j = figures[0].getY() > visY ? figures[0].getY() : visY; j < ((figures[0].getY() + figures[0].getR()) > (now.Height) ? now.Height : figures[0].getY() + figures[0].getR()) && j >= visY && j <= visY + visR; j++)
