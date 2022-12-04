@@ -10,10 +10,45 @@ using System.Windows.Forms;
 
 namespace GraphicsLab4
 {
+    public class Figure
+    {
+        private int x;
+        private int y;
+        private int r;
+        private Bitmap btm;
+
+        public Figure(int newX, int newY, int newR, Bitmap newBtm)
+        {
+            x = newX;
+            y = newY;
+            r = newR;
+            btm = newBtm;
+        }
+
+        public int getX()
+        {
+            return x;
+        }
+
+        public int getY()
+        {
+            return y;
+        }
+
+        public int getR()
+        {
+            return r;
+        }
+
+        public Bitmap getBtm()
+        {
+            return btm;
+        }
+    }
+
     public partial class Form1 : Form
     {
         Color white = Color.FromArgb(0, 0, 0, 0);
-        Color black = Color.FromArgb(255, 0, 0, 0);
 
         public Form1()
         {
@@ -22,7 +57,7 @@ namespace GraphicsLab4
             g.FillRectangle(new SolidBrush(white), 0, 0, 400, 400);
         }
 
-        List<Bitmap> figures = new List<Bitmap>();
+        List<Figure> figures = new List<Figure>();
         private void addSquare_Click(object sender, EventArgs e)
         {
             string stringX = squareX.Text;
@@ -38,7 +73,7 @@ namespace GraphicsLab4
                 Random rnd = new Random();
                 g1.FillRectangle(new SolidBrush(Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255))), x, y, r, r);
             }
-            figures.Add(btm);
+            figures.Add(new Figure(x, y, r, btm));
             figureCounter.Text = figures.Count.ToString();
         }
 
@@ -59,7 +94,7 @@ namespace GraphicsLab4
                 Random rnd = new Random();
                 g1.FillPolygon(new SolidBrush(Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255))), points);
             }
-            figures.Add(btm);
+            figures.Add(new Figure(x, y, r, btm));
             figureCounter.Text = figures.Count.ToString();
         }
 
@@ -78,7 +113,7 @@ namespace GraphicsLab4
                 Random rnd = new Random();
                 g1.FillEllipse(new SolidBrush(Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255))), x, y, r, r);
             }
-            figures.Add(btm);
+            figures.Add(new Figure(x, y, r, btm));
             figureCounter.Text = figures.Count.ToString();
         }
 
@@ -111,13 +146,13 @@ namespace GraphicsLab4
                 {
                     now = new Bitmap(pictureBox1.Image);
                 }
-                Bitmap first = figures[0];
+                Bitmap first = figures[0].getBtm();
 
                 if (figures.Count() < 2)
                 {
-                    for (int i = 0; i < now.Height; i++)
+                    for (int i = figures[0].getX(); i < ((figures[0].getX() + figures[0].getR()) > (now.Height) ? now.Height : figures[0].getX() + figures[0].getR()); i++)
                     {
-                        for (int j = 0; j < now.Height; j++)
+                        for (int j = figures[0].getY(); j < ((figures[0].getY() + figures[0].getR()) > (now.Height) ? now.Height : figures[0].getY() + figures[0].getR()); j++)
                         {
                             if (first.GetPixel(i, j) != white)
                             {
@@ -128,10 +163,10 @@ namespace GraphicsLab4
                 }
                 else
                 {
-                    Bitmap second = figures[1];
-                    for (int i = 0; i < now.Height; i++)
+                    Bitmap second = figures[1].getBtm();
+                    for (int i = figures[0].getX(); i < ((figures[0].getX() + figures[0].getR()) > (now.Height) ? now.Height : figures[0].getX() + figures[0].getR()); i++)
                     {
-                        for (int j = 0; j < now.Height; j++)
+                        for (int j = figures[0].getY(); j < ((figures[0].getY() + figures[0].getR()) > (now.Height) ? now.Height : figures[0].getY() + figures[0].getR()); j++)
                         {
                             if (second.GetPixel(i, j) != white)
                             {
