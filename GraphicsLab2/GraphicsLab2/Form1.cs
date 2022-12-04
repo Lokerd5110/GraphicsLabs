@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace GraphicsLab2
 {
-    public partial class Form1 : Form
+    public partial class Form1
     {
         public Form1()
         {
@@ -30,7 +30,7 @@ namespace GraphicsLab2
 
         }
 
-        public byte[] readPicture (string path)
+        public byte[] readPicture(string path)
         {
             // массив для хранения значений
             byte[] res = new byte[0];

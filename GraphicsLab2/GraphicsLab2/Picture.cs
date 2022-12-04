@@ -2,10 +2,8 @@
 
 namespace GraphicsLab2
 {
-    public partial class Form1
+    public partial class Picture
     {
-        class Picture
-        {
 
             private int width;
             private int height;
@@ -41,6 +39,5 @@ namespace GraphicsLab2
             {
                 return pallete;
             }
-        }
     }
 }

@@ -1,0 +1,10 @@
+C:\Users\loker\source\repos\GraphicsLab4\GraphicsLab4\obj\Debug\GraphicsLab4.csproj.AssemblyReference.cache
+C:\Users\loker\source\repos\GraphicsLab4\GraphicsLab4\obj\Debug\GraphicsLab4.Properties.Resources.resources
+C:\Users\loker\source\repos\GraphicsLab4\GraphicsLab4\obj\Debug\GraphicsLab4.csproj.GenerateResource.cache
+C:\Users\loker\source\repos\GraphicsLab4\GraphicsLab4\obj\Debug\GraphicsLab4.csproj.CoreCompileInputs.cache
+C:\Users\loker\source\repos\GraphicsLab4\GraphicsLab4\bin\Debug\GraphicsLab4.exe.config
+C:\Users\loker\source\repos\GraphicsLab4\GraphicsLab4\bin\Debug\GraphicsLab4.exe
+C:\Users\loker\source\repos\GraphicsLab4\GraphicsLab4\bin\Debug\GraphicsLab4.pdb
+C:\Users\loker\source\repos\GraphicsLab4\GraphicsLab4\obj\Debug\GraphicsLab4.exe
+C:\Users\loker\source\repos\GraphicsLab4\GraphicsLab4\obj\Debug\GraphicsLab4.pdb
+C:\Users\loker\source\repos\GraphicsLab4\GraphicsLab4\obj\Debug\GraphicsLab4.Form1.resources
