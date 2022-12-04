@@ -17,4 +17,4 @@ C:\Users\loker\source\repos\GraphicsLabs\GraphicsLab4\GraphicsLab4\obj\Debug\Gra
 C:\Users\loker\source\repos\GraphicsLabs\GraphicsLab4\GraphicsLab4\obj\Debug\GraphicsLab4.csproj.CoreCompileInputs.cache
 C:\Users\loker\source\repos\GraphicsLabs\GraphicsLab4\GraphicsLab4\obj\Debug\GraphicsLab4.exe
 C:\Users\loker\source\repos\GraphicsLabs\GraphicsLab4\GraphicsLab4\obj\Debug\GraphicsLab4.pdb
-C:\Users\loker\source\repos\GraphicsLabs\GraphicsLab4\GraphicsLab4\obj\Debug\GraphicsLab4.Figure.resources
+C:\Users\loker\source\repos\GraphicsLabs\GraphicsLab4\GraphicsLab4\obj\Debug\GraphicsLab4.Form1.resources
