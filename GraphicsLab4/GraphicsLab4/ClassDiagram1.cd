@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="GraphicsLab4.Program">
-    <Position X="0.5" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="GraphicsLab4.Form1">
     <Position X="5" Y="1" Width="1.5" />
     <Members>
@@ -24,7 +17,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>wEAgACAAACAAABAACMaMAAgyAAQAAQBBAQAAAABAIAA=</HashCode>
+      <HashCode>wEAAACAIACAAABAADMaNEAgyAAQAAQBBCQAAAABCIAA=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
