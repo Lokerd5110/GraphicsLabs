@@ -23,6 +23,7 @@ namespace GraphicsLab3
         {
             Random rnd = new Random();
 
+            // drawing face
             Color bigColor = Color.FromArgb(255, rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255));
             int bigX = pictureBox1.Width / 2;
             int bigY = pictureBox1.Height / 2;
@@ -30,6 +31,7 @@ namespace GraphicsLab3
             drawRing(bigX, bigY, bigR, bigColor);
             fillCircle(bigX, bigY, bigR, bigColor);
 
+            // drawing left eye
             Color eyeColor = Color.FromArgb(255, rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255));
             int eyeR = bigR / 3;
             int leftEyeX = (int)((Double)bigX + Math.Cos(Math.PI * -150/180) * (Double)(bigR / 2));
@@ -39,12 +41,15 @@ namespace GraphicsLab3
             drawRing(leftEyeX, leftEyeY, eyeR / 2, Color.FromArgb(255, 0, 0, 0));
             fillCircle(leftEyeX, leftEyeY, eyeR / 2, Color.FromArgb(255, 0, 0, 0));
 
+            // drawing right eye
             int rightEyeX = (int)((Double)bigX + Math.Cos(Math.PI * -30 / 180) * (Double)(bigR / 2));
             int rightEyeY = (int)((Double)bigY + Math.Sin(Math.PI * -30 / 180) * (Double)(bigR / 2));
             drawRing(rightEyeX, rightEyeY, eyeR, eyeColor);
             fillCircle(rightEyeX, rightEyeY, eyeR, eyeColor);
             drawRing(rightEyeX, rightEyeY, eyeR / 2, Color.FromArgb(255, 0, 0, 0));
             fillCircle(rightEyeX, rightEyeY, eyeR / 2, Color.FromArgb(255, 0, 0, 0));
+
+
         }
 
         private void plotCircle (int x, int y, int baseX, int baseY, Color color, Bitmap img) {
