@@ -50,6 +50,8 @@ namespace GraphicsLab4
             this.label5 = new System.Windows.Forms.Label();
             this.visionX = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.nonBordered = new System.Windows.Forms.Button();
+            this.bordered = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -233,11 +235,33 @@ namespace GraphicsLab4
             this.label6.TabIndex = 31;
             this.label6.Text = "x:";
             // 
+            // nonBordered
+            // 
+            this.nonBordered.Location = new System.Drawing.Point(22, 242);
+            this.nonBordered.Name = "nonBordered";
+            this.nonBordered.Size = new System.Drawing.Size(150, 51);
+            this.nonBordered.TabIndex = 37;
+            this.nonBordered.Text = "Without border";
+            this.nonBordered.UseVisualStyleBackColor = true;
+            this.nonBordered.Click += new System.EventHandler(this.nonBordered_Click);
+            // 
+            // bordered
+            // 
+            this.bordered.Location = new System.Drawing.Point(196, 241);
+            this.bordered.Name = "bordered";
+            this.bordered.Size = new System.Drawing.Size(150, 51);
+            this.bordered.TabIndex = 38;
+            this.bordered.Text = "With border";
+            this.bordered.UseVisualStyleBackColor = true;
+            this.bordered.Click += new System.EventHandler(this.bordered_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.bordered);
+            this.Controls.Add(this.nonBordered);
             this.Controls.Add(this.visionR);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.visionY);
@@ -290,6 +314,8 @@ namespace GraphicsLab4
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox visionX;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button nonBordered;
+        private System.Windows.Forms.Button bordered;
     }
 }
 

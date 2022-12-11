@@ -14,12 +14,16 @@ namespace GraphicsLab4
     {
         Color white = Color.FromArgb(0, 0, 0, 0);
         Color red = Color.FromArgb(255, 255, 0, 0);
+        Bitmap borderedNow, nonBorderedNow;
+        Boolean isBordered = false;
 
         public Form1()
         {
             InitializeComponent();
             Graphics g = pictureBox1.CreateGraphics();
             g.FillRectangle(new SolidBrush(white), 0, 0, 400, 400);
+            borderedNow = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            nonBorderedNow = new Bitmap(pictureBox1.Width, pictureBox1.Height);
         }
 
         List<Figure> figures = new List<Figure>();
@@ -36,7 +40,11 @@ namespace GraphicsLab4
             using (Graphics g1 = Graphics.FromImage(btm))
             {
                 Random rnd = new Random();
-                g1.FillRectangle(new SolidBrush(Color.FromArgb(255, rnd.Next(1, 255), rnd.Next(1, 255), rnd.Next(1, 255))), x, y, r, r);
+                int red = rnd.Next(1, 255);
+                int green = rnd.Next(1, 255);
+                int blue = rnd.Next(1, 255);
+
+                g1.FillRectangle(new SolidBrush(Color.FromArgb(255, red, green, blue)), x, y, r, r);
             }
             figures.Add(new Figure(x, y, r, btm));
             figureCounter.Text = figures.Count.ToString();
@@ -64,29 +72,71 @@ namespace GraphicsLab4
                 int visX = parser(visionX.Text);
                 int visY = parser(visionY.Text);
                 int visR = parser(visionR.Text) == 0 ? 400 : parser(visionR.Text);
-                Bitmap now = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 // Bitmap now = new Bitmap(pictureBox1.Image);
                 if (pictureBox1.Image == null)
                 {
-                    Graphics g = Graphics.FromImage(now);
-                    g.FillRectangle(new SolidBrush(white), 0, 0, 400, 400);
-                } else
-                {
-                    now = new Bitmap(pictureBox1.Image);
+                    Graphics g = Graphics.FromImage(borderedNow);
+                    g.Clear(white);
+                    g = Graphics.FromImage(nonBorderedNow);
+                    g.Clear(white);
                 }
                 Bitmap first = figures[0].getBtm();
 
                 if (figures.Count() < 2)
                 {
-                    for (int i = figures[0].getX() > visX ? figures[0].getX() : visX; i < ((figures[0].getX() + figures[0].getR()) > (now.Height) ? now.Height : figures[0].getX() + figures[0].getR()) && i >= visX && i <= visX + visR; i++)
-                    {
-                        for (int j = figures[0].getY() > visY ? figures[0].getY() : visY; j < ((figures[0].getY() + figures[0].getR()) > (now.Height) ? now.Height : figures[0].getY() + figures[0].getR()) && j >= visY && j <= visY + visR; j++)
+                    for (int i = figures[0].getX() > visX ? figures[0].getX() : visX;
+                        i < ((figures[0].getX() + figures[0].getR()) > (borderedNow.Height) ?
+                            borderedNow.Height :
+                            figures[0].getX() + figures[0].getR()) && i >= visX && i <= visX + visR;
+                        i++)
                         {
-                            if (first.GetPixel(i, j) != white && now.GetPixel(i, j) != red)
-                            {
-                                if (now.GetPixel(i, j) != red)
-                                now.SetPixel(i, j, first.GetPixel(i, j));
+                            for (int j = figures[0].getY() > visY ? figures[0].getY() : visY;
+                                j < ((figures[0].getY() + figures[0].getR()) > (borderedNow.Height) ?
+                                    borderedNow.Height :
+                                    figures[0].getY() + figures[0].getR()) && j >= visY && j <= visY + visR;
+                                j++)
+                                {
+                                    if (borderedNow.GetPixel(i, j) != red && borderedNow.GetPixel(i, j) != white)
+                                    {
+                                        Color nowRight = borderedNow.GetPixel(i + 1, j);
+                                        Color nowLeft = borderedNow.GetPixel(i - 1, j);
+                                        Color nowTop = borderedNow.GetPixel(i, j + 1);
+                                        Color nowBottom = borderedNow.GetPixel(i, j - 1);
+                                        if (nowTop == white || nowLeft == white || nowBottom == white || nowRight == white)
+                                        {
+                                            borderedNow.SetPixel(i, j, red);
+                                        }
+
+                                        Color firstRight = first.GetPixel(i + 1, j);
+                                        Color firstLeft = first.GetPixel(i - 1, j);
+                                        Color firstTop = first.GetPixel(i, j + 1);
+                                        Color firstBottom = first.GetPixel(i, j - 1);
+                                        if (firstTop == white || firstLeft == white || firstBottom == white || firstRight == white)
+                                        {
+                                            borderedNow.SetPixel(i, j, red);
+                                        }
+                                    }
                             }
+                    }
+
+                    for (int i = figures[0].getX() > visX ? figures[0].getX() : visX; 
+                        i < ((figures[0].getX() + figures[0].getR()) > (borderedNow.Height) ? 
+                            borderedNow.Height : 
+                            figures[0].getX() + figures[0].getR()) && i >= visX && i <= visX + visR; 
+                        i++)
+                        {
+                            for (int j = figures[0].getY() > visY ? figures[0].getY() : visY; 
+                                j < ((figures[0].getY() + figures[0].getR()) > (borderedNow.Height) ?
+                                    borderedNow.Height : 
+                                    figures[0].getY() + figures[0].getR()) && j >= visY && j <= visY + visR; 
+                                j++)
+                                {
+                                    if (first.GetPixel(i, j) != white && borderedNow.GetPixel(i, j) != red) 
+                                    {
+                                        borderedNow.SetPixel(i, j, first.GetPixel(i, j));
+                                    }
+
+                                    nonBorderedNow.SetPixel(i, j, first.GetPixel(i, j));
                         }
                     }
                 }
@@ -94,81 +144,139 @@ namespace GraphicsLab4
                 {
                     Bitmap second = figures[1].getBtm();
 
-                    for (int i = figures[0].getX() > visX ? figures[0].getX() : visX; i < ((figures[0].getX() + figures[0].getR()) > (now.Height) ? now.Height : figures[0].getX() + figures[0].getR()) && i >= visX && i <= visX + visR; i++)
-                    {
-                        for (int j = figures[0].getY() > visY ? figures[0].getY() : visY; j < ((figures[0].getY() + figures[0].getR()) > (now.Height) ? now.Height : figures[0].getY() + figures[0].getR()) && j >= visY && j <= visY + visR; j++)
+                    for (int i = figures[1].getX() > visX ? figures[1].getX() : visX; 
+                        i < ((figures[1].getX() + figures[1].getR()) > (borderedNow.Height) ?
+                            borderedNow.Height : 
+                            figures[1].getX() + figures[1].getR()) && i >= visX && i <= visX + visR; 
+                        i++)
                         {
-                            if (second.GetPixel(i, j) != white && now.GetPixel(i, j) != red)
-                            {
-                                if (first.GetPixel(i + 1, j) == white || first.GetPixel(i, j + 1) == white || first.GetPixel(i - 1, j) == white || first.GetPixel(i, j - 1) == white || second.GetPixel(i + 1, j) == white || second.GetPixel(i, j + 1) == white || second.GetPixel(i - 1, j) == white || second.GetPixel(i, j - 1) == white)
+                            for (int j = figures[1].getY() > visY ? figures[1].getY() : visY; 
+                                j < ((figures[1].getY() + figures[1].getR()) > (borderedNow.Height) ?
+                                    borderedNow.Height : 
+                                    figures[1].getY() + figures[1].getR()) && j >= visY && j <= visY + visR; 
+                                j++)
                                 {
-                                    now.SetPixel(i, j, red);
-                                } else
-                                {
-                                    now.SetPixel(i, j, white);
-                                }
-                            } else if (first.GetPixel(i, j) != white && now.GetPixel(i, j) != red)
-                            {
-                                now.SetPixel(i, j, first.GetPixel(i, j));
+                                    if (borderedNow.GetPixel(i, j) != red && borderedNow.GetPixel(i, j) != white)
+                                    {
+                                        Color nowRight = borderedNow.GetPixel(i + 1, j);
+                                        Color nowLeft = borderedNow.GetPixel(i - 1, j);
+                                        Color nowTop = borderedNow.GetPixel(i, j + 1);
+                                        Color nowBottom = borderedNow.GetPixel(i, j - 1);
+                                        if (nowTop == white || nowLeft == white || nowBottom == white || nowRight == white)
+                                        {
+                                            borderedNow.SetPixel(i, j, red);
+                                        }
+
+                                        Color secondRight = second.GetPixel(i + 1, j);
+                                        Color secondLeft = second.GetPixel(i - 1, j);
+                                        Color secondTop = second.GetPixel(i, j + 1);
+                                        Color secondBottom = second.GetPixel(i, j - 1);
+                                        if (secondTop == white || secondLeft == white || secondBottom == white|| secondRight == white)
+                                        {
+                                            borderedNow.SetPixel(i, j, red);
+                                            nonBorderedNow.SetPixel(i, j, white);
+                                        } else
+                                        {
+                                            borderedNow.SetPixel(i, j, white);
+                                            nonBorderedNow.SetPixel(i, j, white);
+                                        }
+                                    }
                             }
-                        }
+                    }
+
+                    for (int i = figures[0].getX() > visX ? figures[0].getX() : visX; 
+                        i < ((figures[0].getX() + figures[0].getR()) > (borderedNow.Height) ?
+                            borderedNow.Height :
+                            figures[0].getX() + figures[0].getR()) && i >= visX && i <= visX + visR;
+                        i++)
+                        {
+                            for (int j = figures[0].getY() > visY ? figures[0].getY() : visY;
+                            j < ((figures[0].getY() + figures[0].getR()) > (borderedNow.Height) ?
+                                borderedNow.Height :
+                                figures[0].getY() + figures[0].getR()) && j >= visY && j <= visY + visR;
+                            j++)
+                                {
+                                    if (second.GetPixel(i, j) != white && borderedNow.GetPixel(i, j) != red)
+                                    {
+                                        Color firstRight = first.GetPixel(i + 1, j);
+                                        Color firstLeft = first.GetPixel(i - 1, j);
+                                        Color firstTop = first.GetPixel(i, j + 1);
+                                        Color firstBottom = first.GetPixel(i, j - 1);
+
+                                        Color secondRight = second.GetPixel(i + 1, j);
+                                        Color secondLeft = second.GetPixel(i - 1, j);
+                                        Color secondTop = second.GetPixel(i, j + 1);
+                                        Color secondBottom = second.GetPixel(i, j - 1);
+                                        if ((firstRight == white || firstLeft == white || firstBottom == white || firstTop == white) || 
+                                            (secondRight == white || secondLeft == white || secondBottom == white || secondTop == white))
+                                        {
+                                            borderedNow.SetPixel(i, j, red);
+                                        } else
+                                        {
+                                            borderedNow.SetPixel(i, j, white);
+                                        }
+                                    } else if (first.GetPixel(i, j) != white && borderedNow.GetPixel(i, j) != red)
+                                    {
+                                        borderedNow.SetPixel(i, j, first.GetPixel(i, j));
+                                    }
+
+                                    if (second.GetPixel(i, j) == white) 
+                                        nonBorderedNow.SetPixel(i, j, first.GetPixel(i, j));
+                            }
                     }
                 }
 
                 figures.RemoveAt(0);
                 figureCounter.Text = figures.Count.ToString();
-                pictureBox1.Image = now;
+                if (isBordered)
+                {
+                    pictureBox1.Image = borderedNow;
+                }
+                else
+                {
+                    pictureBox1.Image = nonBorderedNow;
+                }
             }
-        }
-
-        private void drawBorder()
-        {
-            int visX = parser(visionX.Text);
-            int visY = parser(visionY.Text);
-            int visR = parser(visionR.Text) == 0 ? 400 : parser(visionR.Text);
-            Bitmap now = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            if (pictureBox1.Image == null)
-            {
-                Graphics g = Graphics.FromImage(now);
-                g.FillRectangle(new SolidBrush(white), 0, 0, 400, 400);
-            }
-            else
-            {
-                now = new Bitmap(pictureBox1.Image);
-            }
-
-            for (int i = 0; i < visR; i++)
-            {
-                now.SetPixel(visX + i, visY, red);
-                now.SetPixel(visX, visY + i, red);
-                now.SetPixel(visX + visR - i - 1, visY + visR - 1, red);
-                now.SetPixel(visX + visR - 1, visY + visR - i - 1, red);
-            }
-
-            pictureBox1.Image = now;
         }
 
         private void drawOne_Click(object sender, EventArgs e)
         {
-            drawBorder();
             drawFigure();
         }
 
         private void drawAll_Click(object sender, EventArgs e)
         {
-            drawBorder();
             while (figures.Count > 0)
             {
                 drawFigure();
             }
         }
 
+        private void nonBordered_Click(object sender, EventArgs e)
+        {
+            isBordered = false;
+            pictureBox1.Image = nonBorderedNow;
+        }
+
+        private void bordered_Click(object sender, EventArgs e)
+        {
+            isBordered = true;
+            pictureBox1.Image = borderedNow;
+        }
+
         private void clear_Click(object sender, EventArgs e)
         {
-            Bitmap clear = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            Graphics g = Graphics.FromImage(clear);
-            g.FillRectangle(new SolidBrush(white), 0, 0, pictureBox1.Width, pictureBox1.Height);
-            pictureBox1.Image = clear;
+            Graphics g = Graphics.FromImage(borderedNow);
+            g.Clear(white);
+            g = Graphics.FromImage(nonBorderedNow);
+            g.Clear(white);
+            if (isBordered)
+            {
+                pictureBox1.Image = borderedNow;
+            } else
+            {
+                pictureBox1.Image = nonBorderedNow;
+            }
         }
     }
 
