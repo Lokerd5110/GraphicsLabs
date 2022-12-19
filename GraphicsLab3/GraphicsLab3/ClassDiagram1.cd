@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GraphicsLab3.Form1">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="aValue" Hidden="true" />
+      <Field Name="bValue" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="drawButton" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="pictureBox1" Hidden="true" />
+      <Field Name="rValue" Hidden="true" />
+      <Field Name="white" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAECAACAAABAABACEQAACAAAARAAAAAIQAghAAAA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
